@@ -21,6 +21,13 @@
             font-size: 16px;
             cursor: pointer;
         }
+
+        #recuadroNumeros {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            display: inline-block;
+        }
     </style>
     <script>
         let contadorClicks = 0;
@@ -29,7 +36,8 @@
         function incrementarContador() {
             contadorClicks++;
             actualizarContador();
-
+            actualizarRecuadro();
+            
             // Reiniciar el temporizador de inactividad
             clearTimeout(inactividadTimeout);
             inactividadTimeout = setTimeout(resetearContador, 5000); // 5000 milisegundos = 5 segundos
@@ -39,9 +47,14 @@
             document.getElementById("contador").innerText = "Clicks realizados: " + contadorClicks;
         }
 
+        function actualizarRecuadro() {
+            document.getElementById("recuadroNumeros").innerText += contadorClicks + ', ';
+        }
+
         function resetearContador() {
             contadorClicks = 0;
             actualizarContador();
+            actualizarRecuadro();
         }
     </script>
 </head>
@@ -52,6 +65,10 @@
     <p id="contador">Clicks realizados: 0</p>
 
     <button id="botonClic" onclick="incrementarContador()">Hacer clic</button>
+
+    <div id="recuadroNumeros">
+        <strong>Números de clics:</strong> 
+    </div>
 
 </body>
 </html>
