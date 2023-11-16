@@ -24,20 +24,24 @@
     </style>
     <script>
         let contadorClicks = 0;
+        let inactividadTimeout;
 
         function incrementarContador() {
             contadorClicks++;
             actualizarContador();
+
+            // Reiniciar el temporizador de inactividad
+            clearTimeout(inactividadTimeout);
+            inactividadTimeout = setTimeout(resetearContador, 5000); // 5000 milisegundos = 5 segundos
         }
 
         function actualizarContador() {
             document.getElementById("contador").innerText = "Clicks realizados: " + contadorClicks;
+        }
 
-            // Reiniciar el contador a 0 después de 5 segundos de inactividad
-            setTimeout(function() {
-                contadorClicks = 0;
-                actualizarContador();
-            }, 5000);
+        function resetearContador() {
+            contadorClicks = 0;
+            actualizarContador();
         }
     </script>
 </head>
