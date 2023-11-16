@@ -9,6 +9,8 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
+            background-color: black;
+            color: white;
         }
 
         #contador {
@@ -24,7 +26,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: all 0.3s ease-in-out; /* Agregamos una transición para suavizar el cambio de tamaño */
+            transition: all 0.3s ease-in-out;
+            white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
         }
     </style>
     <script>
@@ -38,7 +41,7 @@
             
             // Reiniciar el temporizador de inactividad
             clearTimeout(inactividadTimeout);
-            inactividadTimeout = setTimeout(resetearContador, 1500); // 5000 milisegundos = 5 segundos
+            inactividadTimeout = setTimeout(resetearContador, 1000); // 5000 milisegundos = 5 segundos
         }
 
         function actualizarContador() {
@@ -57,18 +60,41 @@
             let nuevoTamanio = Math.random() < 0.5 ? botonClic.clientWidth * 2 : botonClic.clientWidth * 0.5;
             botonClic.style.width = nuevoTamanio + 'px';
             botonClic.style.height = nuevoTamanio + 'px';
+
+            // Cambiar el color del botón incluyendo blanco
+            let nuevoColor = generarColorAleatorio();
+            botonClic.style.backgroundColor = nuevoColor;
         }
 
         function resetearContador() {
             contadorClicks = 0;
             actualizarContador();
             
-            // Regresar el botón a la posición y tamaño inicial
+            // Regresar el botón a la posición, tamaño y color inicial
             let botonClic = document.getElementById("botonClic");
             botonClic.style.left = "50%";
             botonClic.style.top = "50%";
-            botonClic.style.width = "auto"; // Restablecer el ancho a su valor por defecto
-            botonClic.style.height = "auto"; // Restablecer la altura a su valor por defecto
+            botonClic.style.width = "auto";
+            botonClic.style.height = "auto";
+            botonClic.style.backgroundColor = "";
+        }
+
+        function generarColorAleatorio() {
+            // Generar colores RGB aleatorios incluyendo blanco
+            let r, g, b;
+            if (Math.random() < 0.9) {
+                // 90% de probabilidad de colores aleatorios
+                r = Math.floor(Math.random() * 256);
+                g = Math.floor(Math.random() * 256);
+                b = Math.floor(Math.random() * 256);
+            } else {
+                // 10% de probabilidad de blanco
+                r = 255;
+                g = 255;
+                b = 255;
+            }
+
+            return `rgb(${r}, ${g}, ${b})`;
         }
     </script>
 </head>
@@ -82,3 +108,4 @@
 
 </body>
 </html>
+
