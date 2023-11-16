@@ -20,6 +20,7 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Agregamos una transición para suavizar el movimiento */
         }
     </style>
     <script>
@@ -29,14 +30,24 @@
         function incrementarContador() {
             contadorClicks++;
             actualizarContador();
+            moverBotonClicAleatorio();
             
             // Reiniciar el temporizador de inactividad
             clearTimeout(inactividadTimeout);
-            inactividadTimeout = setTimeout(resetearContador, 1000); 
+            inactividadTimeout = setTimeout(resetearContador, 1000); // 5000 milisegundos = 5 segundos
         }
 
         function actualizarContador() {
             document.getElementById("contador").innerText = "Clicks realizados: " + contadorClicks;
+        }
+
+        function moverBotonClicAleatorio() {
+            let botonClic = document.getElementById("botonClic");
+            let nuevaPosicionX = Math.floor(Math.random() * (window.innerWidth - botonClic.clientWidth));
+            let nuevaPosicionY = Math.floor(Math.random() * (window.innerHeight - botonClic.clientHeight));
+
+            botonClic.style.left = nuevaPosicionX + 'px';
+            botonClic.style.top = nuevaPosicionY + 'px';
         }
 
         function resetearContador() {
@@ -47,7 +58,7 @@
 </head>
 <body>
 
-    <h1>Contador de jomar</h1>
+    <h1>Contador de Jomar</h1>
 
     <p id="contador">Clicks realizados: 0</p>
 
