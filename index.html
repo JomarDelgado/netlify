@@ -3,82 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currículum de Omar Delgado</title>
+    <title>Contador de Clics</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
             margin: 20px;
         }
 
-        h1, h2 {
-            color: #333;
+        #contador {
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
-        p {
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 5px;
+        #botonClic {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
+    <script>
+        let contadorClicks = 0;
+
+        function incrementarContador() {
+            contadorClicks++;
+            actualizarContador();
+        }
+
+        function actualizarContador() {
+            document.getElementById("contador").innerText = "Clicks realizados: " + contadorClicks;
+        }
+    </script>
 </head>
 <body>
 
-    <header>
-        <h1>Omar Delgado</h1>
-        <p>Ingeniero Industrial</p>
-    </header>
+    <h1>Contador de Clics</h1>
 
-    <section>
-        <h2>Información de Contacto</h2>
-        <p>Correo Electrónico: omar.delgado@email.com</p>
-        <p>Teléfono: (123) 456-7890</p>
-        <p>Dirección: Ciudad, País</p>
-    </section>
+    <p id="contador">Clicks realizados: 0</p>
 
-    <section>
-        <h2>Resumen Profesional</h2>
-        <p>Soy un ingeniero industrial apasionado por la mejora continua y la eficiencia en los procesos. Con experiencia en...</p>
-    </section>
-
-    <section>
-        <h2>Educación</h2>
-        <p><strong>Universidad Tecnológica</strong>, Ciudad, País</p>
-        <p>Ingeniería Industrial, Grado en [Año de graduación]</p>
-    </section>
-
-    <section>
-        <h2>Experiencia Laboral</h2>
-        <p><strong>Empresa XYZ</strong>, Ciudad, País</p>
-        <p>Ingeniero Industrial Junior (Fecha de inicio - Fecha de finalización)</p>
-        <ul>
-            <li>Responsabilidad 1</li>
-            <li>Responsabilidad 2</li>
-            <li>Logros destacados</li>
-        </ul>
-
-        <!-- Puedes agregar más secciones para trabajos anteriores -->
-    </section>
-
-    <section>
-        <h2>Habilidades</h2>
-        <ul>
-            <li>Gestión de Proyectos</li>
-            <li>Optimización de Procesos</li>
-            <li>Análisis de Datos</li>
-            <li>Habilidades Técnicas Específicas</li>
-        </ul>
-    </section>
-
-    <footer>
-        <p>Última actualización: [Fecha]</p>
-    </footer>
+    <button id="botonClic" onclick="incrementarContador()">Hacer clic</button>
 
 </body>
 </html>
