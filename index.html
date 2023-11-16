@@ -24,6 +24,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            transition: all 0.3s ease-in-out; /* Agregamos una transición para suavizar el cambio de tamaño */
         }
     </style>
     <script>
@@ -37,7 +38,7 @@
             
             // Reiniciar el temporizador de inactividad
             clearTimeout(inactividadTimeout);
-            inactividadTimeout = setTimeout(resetearContador, 1000); // 5000 milisegundos = 5 segundos
+            inactividadTimeout = setTimeout(resetearContador, 1500); // 5000 milisegundos = 5 segundos
         }
 
         function actualizarContador() {
@@ -51,16 +52,23 @@
 
             botonClic.style.left = nuevaPosicionX + 'px';
             botonClic.style.top = nuevaPosicionY + 'px';
+
+            // Cambiar el tamaño del botón entre el doble y la mitad del tamaño actual
+            let nuevoTamanio = Math.random() < 0.5 ? botonClic.clientWidth * 2 : botonClic.clientWidth * 0.5;
+            botonClic.style.width = nuevoTamanio + 'px';
+            botonClic.style.height = nuevoTamanio + 'px';
         }
 
         function resetearContador() {
             contadorClicks = 0;
             actualizarContador();
             
-            // Regresar el botón a la posición inicial
+            // Regresar el botón a la posición y tamaño inicial
             let botonClic = document.getElementById("botonClic");
             botonClic.style.left = "50%";
             botonClic.style.top = "50%";
+            botonClic.style.width = "auto"; // Restablecer el ancho a su valor por defecto
+            botonClic.style.height = "auto"; // Restablecer la altura a su valor por defecto
         }
     </script>
 </head>
