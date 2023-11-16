@@ -24,6 +24,8 @@
     </style>
     <script>
         let contadorClicks = 0;
+        let contadorVisible = false;
+        let contadorTimeout;
 
         function incrementarContador() {
             contadorClicks++;
@@ -32,6 +34,23 @@
 
         function actualizarContador() {
             document.getElementById("contador").innerText = "Clicks realizados: " + contadorClicks;
+            mostrarContador();
+
+            // Reiniciar el temporizador para ocultar el contador después de 3 segundos
+            clearTimeout(contadorTimeout);
+            contadorTimeout = setTimeout(ocultarContador, 3000);
+        }
+
+        function mostrarContador() {
+            if (!contadorVisible) {
+                document.getElementById("contador").style.display = "block";
+                contadorVisible = true;
+            }
+        }
+
+        function ocultarContador() {
+            document.getElementById("contador").style.display = "none";
+            contadorVisible = false;
         }
     </script>
 </head>
@@ -39,10 +58,9 @@
 
     <h1>Contador de Clics</h1>
 
-    <p id="contador">Clicks realizados: 0</p>
+    <p id="contador" style="display: none;">Clicks realizados: 0</p>
 
     <button id="botonClic" onclick="incrementarContador()">Hacer clic</button>
 
 </body>
 </html>
-
