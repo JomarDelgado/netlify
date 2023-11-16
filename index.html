@@ -28,6 +28,8 @@
             margin-top: 20px;
             display: inline-block;
             white-space: pre-line; /* Esto permite que los saltos de línea en el texto HTML se respeten */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Agregamos una transición para suavizar el movimiento */
         }
     </style>
     <script>
@@ -37,7 +39,7 @@
         function incrementarContador() {
             contadorClicks++;
             actualizarContador();
-            actualizarRecuadro();
+            moverRecuadroAleatorio();
             
             // Reiniciar el temporizador de inactividad
             clearTimeout(inactividadTimeout);
@@ -48,29 +50,30 @@
             document.getElementById("contador").innerText = "Clicks realizados: " + contadorClicks;
         }
 
-        function actualizarRecuadro() {
-            if (contadorClicks % 60 === 0 && contadorClicks !== 0) {
-                document.getElementById("recuadroNumeros").innerText += '\n'; // Agrega un salto de línea
-            }
-            document.getElementById("recuadroNumeros").innerText += contadorClicks + ', ';
+        function moverRecuadroAleatorio() {
+            let recuadro = document.getElementById("recuadroNumeros");
+            let nuevaPosicionX = Math.floor(Math.random() * (window.innerWidth - recuadro.clientWidth));
+            let nuevaPosicionY = Math.floor(Math.random() * (window.innerHeight - recuadro.clientHeight));
+
+            recuadro.style.left = nuevaPosicionX + 'px';
+            recuadro.style.top = nuevaPosicionY + 'px';
         }
 
         function resetearContador() {
             contadorClicks = 0;
             actualizarContador();
-            actualizarRecuadro();
         }
     </script>
 </head>
 <body>
 
-    <h1>ansiómetro</h1>
+    <h1>Ansiometro</h1>
 
     <p id="contador">Clicks realizados: 0</p>
 
     <button id="botonClic" onclick="incrementarContador()">Hacer clic</button>
 
-    <div id="recuadroNumeros">
+    <div id="recuadroNumeros" onclick="moverRecuadroAleatorio()">
         <strong>Números de clics:</strong> 
     </div>
 
