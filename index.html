@@ -27,6 +27,7 @@
             padding: 10px;
             margin-top: 20px;
             display: inline-block;
+            white-space: pre-line; /* Esto permite que los saltos de línea en el texto HTML se respeten */
         }
     </style>
     <script>
@@ -48,6 +49,9 @@
         }
 
         function actualizarRecuadro() {
+            if (contadorClicks % 60 === 0 && contadorClicks !== 0) {
+                document.getElementById("recuadroNumeros").innerText += '\n'; // Agrega un salto de línea
+            }
             document.getElementById("recuadroNumeros").innerText += contadorClicks + ', ';
         }
 
@@ -60,7 +64,7 @@
 </head>
 <body>
 
-    <h1>Contador de Clics</h1>
+    <h1>ansiómetro</h1>
 
     <p id="contador">Clicks realizados: 0</p>
 
