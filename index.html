@@ -20,6 +20,10 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
     <script>
@@ -45,7 +49,6 @@
             let nuevaPosicionX = Math.floor(Math.random() * (window.innerWidth - botonClic.clientWidth));
             let nuevaPosicionY = Math.floor(Math.random() * (window.innerHeight - botonClic.clientHeight));
 
-            botonClic.style.position = 'absolute';
             botonClic.style.left = nuevaPosicionX + 'px';
             botonClic.style.top = nuevaPosicionY + 'px';
         }
@@ -53,12 +56,17 @@
         function resetearContador() {
             contadorClicks = 0;
             actualizarContador();
+            
+            // Regresar el botón a la posición inicial
+            let botonClic = document.getElementById("botonClic");
+            botonClic.style.left = "50%";
+            botonClic.style.top = "50%";
         }
     </script>
 </head>
 <body>
 
-    <h1>Contador de Jomar</h1>
+    <h1>Contador de Clics</h1>
 
     <p id="contador">Clicks realizados: 0</p>
 
