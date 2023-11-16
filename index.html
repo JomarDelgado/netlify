@@ -20,7 +20,6 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease-in-out; /* Agregamos una transición para suavizar el movimiento */
         }
     </style>
     <script>
@@ -46,6 +45,7 @@
             let nuevaPosicionX = Math.floor(Math.random() * (window.innerWidth - botonClic.clientWidth));
             let nuevaPosicionY = Math.floor(Math.random() * (window.innerHeight - botonClic.clientHeight));
 
+            botonClic.style.position = 'absolute';
             botonClic.style.left = nuevaPosicionX + 'px';
             botonClic.style.top = nuevaPosicionY + 'px';
         }
